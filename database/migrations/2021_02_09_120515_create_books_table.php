@@ -19,6 +19,8 @@ class CreateBooksTable extends Migration
             $table->string('author');
             $table->string('title');
             $table->string('cover');
+            $table->string('description');
+            $table->string('status');
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->decimal('price');
@@ -28,6 +30,7 @@ class CreateBooksTable extends Migration
 
 
         });
+
     }
 
     /**

@@ -2,31 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
-class CategoryController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $categories = Category::all();
 
-        return view('categories.index', compact('categories'));
-    }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+
+    }
     public function create()
     {
-        return view('categories.create');
+        //
     }
 
     /**
@@ -37,11 +39,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        Category::create([
-           'category_name' =>$request->category_name
-        ]);
-
-        return redirect()->route('categories.index');
+        //
     }
 
     /**
@@ -50,9 +48,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        return view('profile', compact('user'));
     }
 
     /**
@@ -63,9 +61,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::find($id);
-
-        return view('categories.edit', compact('category'));
+        //
     }
 
     /**
@@ -75,15 +71,24 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $category = Category::find($id);
-        $category->update([
-            'category_name'=>$request->category_name
+
+        $user = User::find($request->id);
+
+
+
+
+        $user->update([
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'password'=>Hash::make($request->password),
+            'role'=> $request->role
+
 
         ]);
 
-        return redirect()->route('categories.index');
+        return redirect()->route('profile', compact('user'));
     }
 
     /**
@@ -94,9 +99,6 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::find($id);
-        $category->delete();
-
-        return redirect()->route('categories.index');
+        //
     }
 }

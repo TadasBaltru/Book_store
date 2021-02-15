@@ -2,21 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use http\Exception;
 use Illuminate\Http\Request;
+use Auth;
+use Illuminate\Support\Facades\Hash;
 
-class CategoryController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct() {
+
+        $this->middleware('auth');
+        $this->middleware('admin');
+
+    }
     public function index()
     {
-        $categories = Category::all();
+        $users = Auth::user()->all();
 
-        return view('categories.index', compact('categories'));
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -26,7 +35,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('categories.create');
+        //
     }
 
     /**
@@ -37,11 +46,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        Category::create([
-           'category_name' =>$request->category_name
-        ]);
-
-        return redirect()->route('categories.index');
+        //
     }
 
     /**
@@ -63,9 +68,10 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::find($id);
+        $user= Auth::user()->find($id);
 
-        return view('categories.edit', compact('category'));
+        return view('users.edit', compact('user'));
+
     }
 
     /**
@@ -77,13 +83,19 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category = Category::find($id);
-        $category->update([
-            'category_name'=>$request->category_name
+
+        $user = Auth::user()->where('id', '=', $id)->update([
+
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'password'=>Hash::make($request->password),
+            'role'=> $request->role
+
+
 
         ]);
 
-        return redirect()->route('categories.index');
+        return redirect()->route("users.index");
     }
 
     /**
@@ -94,9 +106,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::find($id);
-        $category->delete();
-
-        return redirect()->route('categories.index');
+        $users = Auth::user()->destroy($id);
+        return redirect()->route('users.index');
     }
 }

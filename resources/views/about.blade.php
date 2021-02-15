@@ -2,7 +2,7 @@
 
 @section('content')
 
-        <div class="col-lg-12">
+        <div class="col-lg-12" style="text-align: center!important;">
 
             <h1 class="my-4">About us</h1>
 

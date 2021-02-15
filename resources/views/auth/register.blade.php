@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('app')
 
 @section('content')
 <div class="container">
@@ -68,7 +68,10 @@
                                 </button>
                             </div>
                         </div>
+                                <br>
+                        <p class="text-center"> If you already have an account press <a href="{{route('login')}}"> here </a> to login  </p>
                     </form>
+
                 </div>
             </div>
         </div>

@@ -34,32 +34,49 @@
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('about')}}">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('services')}}">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('contact')}}">Contact</a>
-                </li>
+
 
                 @guest
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('login')}}">login</a>
                 </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('register')}}">register</a>
+                    </li>
                 @endguest;
                 @auth
+                    @if (Auth::user()->role == 'admin')
+
                     <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="document.getElementById('logout-form').submit()">Log out</a>
+                        <a class="nav-link" href="{{route('categories.index')}}"> Categories</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('categories.index')}}" ">Categories</a>
+                        <a class="nav-link" href="{{route('books.index')}}">Books</a>
                     </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('users.index')}}">Users</a>
+                        </li>
+                    @endif
+
+
+                    <li class="nav-item">           <a href="{{route('profile', Auth::user()->id)}}" class="nav-link">Profile</a></li>
+
                     <form action="{{route('logout')}}" method="POST" id="logout-form">
-                        @csrf
+                        @csrf                    <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="document.getElementById('logout-form').submit()">Log out</a>
+                        </li>
                     </form>
                 @endauth;
+
+                <li>  <form action="{{route('home')}}" method="GET">
+                        <div class="input-group">
+                            <input name ="search" type="text" class="form-control" placeholder="search">
+
+
+
+
+                        </div>
+                    </form></li>
 
             </ul>
         </div>
@@ -67,7 +84,8 @@
 </nav>
 
 <!-- Page Content -->
-<div class="container">
+<div class="container mt-5">
+
 
     <div class="row">
         @yield('content')

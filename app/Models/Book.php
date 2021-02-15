@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
+
+    protected $fillable =['author', 'title', 'cover','description','status', 'category_id', 'price', 'discount'];
+    public $timestamps =false; //only want to used created_at column
+
     public function category(){
 
         return $this->belongsTo(Category::class);

@@ -15,8 +15,16 @@ class HomeController extends Controller
     public function index(){
 
         $categories=Category::all();
-        $books=Book::with('category')->get();
+        $search = request()->query('search');
+        $books = Book::with('category')->where('status', 'approved');
+        if ($search) {
+            $books = $books->where('title', 'like', "%{$search}%")->orwhere('author', 'like', "%{$search}%");
+        }
+        $books = $books->paginate(20);
 
         return view('index', compact('categories', 'books'));
+
     }
+
+
 }

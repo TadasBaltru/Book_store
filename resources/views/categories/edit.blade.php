@@ -5,7 +5,7 @@
     <div class="col-lg-12">
 
         <h1 class="my-4">Category edit</h1>
-        <form action="{{route('categories.update'}}" method="POST">
+        <form action="{{route('categories.update', $category->id)}}" method="POST">
             @method('Put')
 
             @csrf
