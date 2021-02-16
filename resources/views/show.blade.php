@@ -17,6 +17,8 @@
         </div>
         <!-- /.card -->
 
+
+            @auth
             <div class="well" style ="margin-top:80px; margin-bottom: 80px">
                 <h4>Leave review:</h4>
                 <form action="{{route('reviews.store')}}" method="post" role="form">
@@ -36,6 +38,19 @@
                     <button type="submit" name="save" class="btn btn-primary">Submit</button>
                 </form>
             </div>
+            @endauth
+        
+            @guest
+
+            <div class="well">
+
+                <h4>If you want to comment press <a href="{{route('login')}}">here</a> to login</h4>
+            </div>
+
+
+            @endguest
+
+
 
         <div class="card card-outline-secondary my-4">
             <div class="card-header">
