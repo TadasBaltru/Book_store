@@ -47,13 +47,23 @@
             <br>
             <br>
             <select name="status" class="form-control">
+
+                @if(Auth::user()->role != 'admin')
+                <option value="Waiting for approval">Waiting for approval</option>
+                @else
                 @if($book->status === 'Approved')
                 <option value="approved">Approved</option>
                 <option value="disapproved">Disapproved</option>
-                @else
+                    @elseif($book->status === 'Rejected')
                     <option value="disapproved">Disapproved</option>
                     <option value="approved">Approved</option>
+                    @else
+                        <option value="disapproved">Disapproved</option>
+                        <option value="approved">Approved</option>
+                        <option value="Waiting for approval">Waiting for approval</option>
+
                 @endif
+                    @endif
 
             </select>
 

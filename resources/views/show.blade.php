@@ -39,7 +39,7 @@
                 </form>
             </div>
             @endauth
-        
+
             @guest
 
             <div class="well">

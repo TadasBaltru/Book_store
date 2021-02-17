@@ -50,6 +50,7 @@ class ProfileController extends Controller
      */
     public function show(User $user)
     {
+        $user = auth()->user();
         return view('profile', compact('user'));
     }
 

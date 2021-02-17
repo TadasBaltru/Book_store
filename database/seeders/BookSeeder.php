@@ -22,6 +22,7 @@ class BookSeeder extends Seeder
             'status'=>'approved',
             'category_id'=>'2',
             'description'=>'test pagrindas',
+            'user_id'=>'1',
             'price'=>'20',
             'discount'=>'0'
 
@@ -34,6 +35,7 @@ class BookSeeder extends Seeder
             'status'=>'approved',
             'category_id'=>'2',
             'description'=>'test pagrindas',
+            'user_id'=>'1',
             'price'=>'20',
             'discount'=>'0'
 
@@ -46,6 +48,7 @@ class BookSeeder extends Seeder
             'status'=>'approved',
             'category_id'=>'2',
             'description'=>'test pagrindas',
+            'user_id'=>'1',
             'price'=>'20',
             'discount'=>'0'
 
@@ -58,6 +61,7 @@ class BookSeeder extends Seeder
             'status'=>'unapproved',
             'category_id'=>'2',
             'description'=>'test pagrindas',
+            'user_id'=>'1',
             'price'=>'20',
             'discount'=>'0'
 
@@ -70,6 +74,7 @@ class BookSeeder extends Seeder
             'status'=>'unapproved',
             'category_id'=>'2',
             'description'=>'test pagrindas',
+            'user_id'=>'1',
             'price'=>'20',
             'discount'=>'0'
 
@@ -82,6 +87,7 @@ class BookSeeder extends Seeder
             'status'=>'unapproved',
             'category_id'=>'2',
             'description'=>'test pagrindas',
+            'user_id'=>'1',
             'price'=>'20',
             'discount'=>'0'
 
@@ -94,6 +100,7 @@ class BookSeeder extends Seeder
             'status'=>'unapproved',
             'category_id'=>'2',
             'description'=>'test pagrindas',
+            'user_id'=>'2',
             'price'=>'20',
             'discount'=>'0'
 
@@ -105,6 +112,7 @@ class BookSeeder extends Seeder
             'cover'=> '',
             'status'=>'unapproved',
             'category_id'=>'2',
+            'user_id'=>'1',
             'description'=>'test pagrindas',
             'price'=>'20',
             'discount'=>'0'

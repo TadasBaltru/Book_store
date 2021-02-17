@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Session\Store;
+use App\Models\User;
 
 class BookController extends Controller
 {
@@ -21,10 +22,20 @@ class BookController extends Controller
         $this->middleware('auth', ['except' => array('index', 'show') ]);
 
     }
-    public function index()
+    public function index(User $user)
     {
         $books = Book::all();
-        return view('books.index', compact('books'));
+        $user = auth()->user();
+
+        if(auth()->user()->role != 'admin')
+        {
+            $books= Book::all()->where('user_id', '=', "$user->id");
+        }
+
+
+
+
+        return view('books.index', compact('books', 'user'));
     }
 
     /**
@@ -34,9 +45,9 @@ class BookController extends Controller
      */
     public function create()
     {
-    //    $categories = Category::all();
+        $categories = Category::all();
 
-        return view('books.create');
+        return view('books.create', compact('categories'));
     }
 
     /**
@@ -58,10 +69,12 @@ class BookController extends Controller
                 'description'=>$request->description,
                 'status'=>$request->status,
                 'category_id'=>$request->category_id,
+                'user_id'=>$request->user,
                 'price'=>$request->price,
                 'discount'=>$request->discount
 
          ]);
+
         return redirect()->route('books.index');
     }
 

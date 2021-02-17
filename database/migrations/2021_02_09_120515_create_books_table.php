@@ -23,6 +23,8 @@ class CreateBooksTable extends Migration
             $table->string('status');
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->decimal('price');
             $table->decimal('discount');
 

@@ -19,6 +19,8 @@
 
 
             @csrf
+
+            <input type="text" name="user" value="{{Auth::user()->id}}" class="form-control" hidden/>
             Author:
             <br>
             <br>
@@ -46,8 +48,13 @@
             <br>
             <br>
             <select name="status" class="form-control">
+                @if(Auth::user()->role != 'admin')
+                    <option value="Waiting for approval">Waiting for approval</option>
+                @else
+                 <option value="Waiting for approval">Waiting for approval</option>
                 <option value="approved">Approved</option>
-                <option value="disapproved">Disapproved</option>
+                <option value="declined">Disapproved</option>
+                    @endif
 
             </select>
 

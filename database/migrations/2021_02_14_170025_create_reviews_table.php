@@ -20,7 +20,6 @@ class CreateReviewsTable extends Migration
             $table->unsignedBigInteger('book_id');
             $table->foreign('book_id')->references('id')->on('books');
             $table->string('content');
-            $table->double('rating');
             $table->timestamps();
         });
     }
