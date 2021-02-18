@@ -37,7 +37,7 @@
                        <br>
                        <select name="rating" id="">
 
-                           @if($rating->user_id)
+                           @if(isset($rating->user_id))
 
                                <option value="{{$rating->rating}}">{{$rating->rating}}</option>
                                <option value="1">1</option>

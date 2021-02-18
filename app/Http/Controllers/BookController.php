@@ -106,14 +106,22 @@ class BookController extends Controller
     public function show(Book $book)
     {
       //  dd($book);
+        if(isset(auth()->user->id)){
 
-        $reviews = Review::all()->where('book_id', '=', "$book->id");
-        $rating = Rating::findorfail(auth()->user()->id);
+            $rating = Rating::findorfail(auth()->user()->id);
+            $reviews = Review::all()->where('book_id', '=', "$book->id");
+            $categories = Category::all();
+            return view('show', compact('book', 'categories', 'reviews', 'rating'));
 
 
 
-        $categories = Category::all();
-        return view('show', compact('book', 'categories', 'reviews', 'rating'));
+        }
+        else{
+            $reviews = Review::all()->where('book_id', '=', "$book->id");
+            $categories = Category::all();
+            return view('show', compact('book', 'categories', 'reviews'));
+        }
+
     }
 
     /**
