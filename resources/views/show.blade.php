@@ -8,7 +8,11 @@
             <img class="card-img-top img-fluid" src="{{asset("storage/".$book->cover)}}" alt="cover">
             <div class="card-body">
                 <h3 class="card-title">{{$book->title}}</h3>
-                <p class="card-text">{{$book->author}}</p>
+                <p class="card-text"> @foreach($book->author as $writer)
+
+                        {{$writer->name ." "}}
+
+                    @endforeach</p>
                 <h4>$24.99</h4>
                 <p class="card-text">{{$book->description}}</p>
                 <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
@@ -19,6 +23,45 @@
 
 
             @auth
+               <div class="well">
+
+                   <h4>Leave rating</h4>
+                   <form action="{{route('ratings.store')}}" method="post", role="form">
+
+                       @csrf
+
+                       <input type="text" name="book_id" value="{{$book->id}}" hidden>
+
+                       Select rating from 1 to 5:
+                       <br>
+                       <br>
+                       <select name="rating" id="">
+
+                           @if($rating->user_id)
+
+                               <option value="{{$rating->rating}}">{{$rating->rating}}</option>
+                               <option value="1">1</option>
+                               <option value="2">2</option>
+                               <option value="3">3</option>
+                               <option value="4">4</option>
+                               <option value="5">5</option>
+
+
+                           @else
+                           <option value="1">1</option>
+                           <option value="2">2</option>
+                           <option value="3">3</option>
+                           <option value="4">4</option>
+                           <option value="5">5</option>
+                               @endif
+                       </select>
+                       <button type="submit" name="save" class="btn btn-primary">Submit</button>
+
+                   </form>
+               </div>
+
+
+
             <div class="well" style ="margin-top:80px; margin-bottom: 80px">
                 <h4>Leave review:</h4>
                 <form action="{{route('reviews.store')}}" method="post" role="form">

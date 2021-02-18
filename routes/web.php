@@ -7,6 +7,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RatingController;
 use App\Models\Book;
 
 /*
@@ -31,6 +32,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::resource('books', BookController::class);
     Route::resource('users', UsersController::class);
     Route::resource('reviews', ReviewController::class);
+    Route::resource('ratings', RatingController::class);
     Route::resource('categories', CategoryController::class);
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
     Route::resource('profiles', ProfileController::class);

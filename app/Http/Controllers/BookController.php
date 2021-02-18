@@ -7,6 +7,7 @@ use App\Models\Book;
 use App\Models\Category;
 use App\Models\Review;
 use App\Models\Author;
+use App\Models\Rating;
 use Illuminate\Http\Request;
 use Illuminate\Session\Store;
 use App\Models\User;
@@ -107,11 +108,12 @@ class BookController extends Controller
       //  dd($book);
 
         $reviews = Review::all()->where('book_id', '=', "$book->id");
+        $rating = Rating::findorfail(auth()->user()->id);
 
 
 
         $categories = Category::all();
-        return view('show', compact('book', 'categories', 'reviews'));
+        return view('show', compact('book', 'categories', 'reviews', 'rating'));
     }
 
     /**
