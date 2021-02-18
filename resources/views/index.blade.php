@@ -36,7 +36,14 @@
                             <p class="card-text">{{$book->author}}</p>
 
 
-                        <p class="card-text"> Category: <a href="#">{{$book->category->category_name }}</a> </p>
+
+                        <p class="card-text"> Category:
+                            @foreach($book->category as $categor)
+
+                            <a href="#">{{$categor->category_name}}</a>
+                            @endforeach
+                        </p>
+
                         </div>
                         <div class="card-footer">
                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
@@ -53,7 +60,7 @@
             </div>
             <!-- /.row -->
 
-        </div>
+
 
 
     </div>

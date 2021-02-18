@@ -62,18 +62,26 @@ class BookController extends Controller
         $path = $request->file('cover')->store('covers', 'public');
 
 
-        Book::create([
+     $book=   Book::create([
                 'author'=>$request->author,
                 'title'=>$request->title,
                 'cover'=>$path,
                 'description'=>$request->description,
                 'status'=>$request->status,
-                'category_id'=>$request->category_id,
-                'user_id'=>$request->user,
+
+                'user_id'=>auth()->user()->id,
                 'price'=>$request->price,
                 'discount'=>$request->discount
 
          ]);
+
+        $categories = explode(',', $request->category);
+        foreach($categories as $category)
+        {
+            $categoryCheck = Category::where('category_name', $category)->firstOrCreate(['category_name' => $category]);
+
+            $categoryCheck->books()->attach($book);
+        }
 
         return redirect()->route('books.index');
     }

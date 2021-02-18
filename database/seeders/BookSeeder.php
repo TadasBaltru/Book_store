@@ -20,7 +20,7 @@ class BookSeeder extends Seeder
             'title'=>'Testavimo pagrindas',
             'cover'=> '',
             'status'=>'approved',
-            'category_id'=>'2',
+
             'description'=>'test pagrindas',
             'user_id'=>'1',
             'price'=>'20',
@@ -33,7 +33,7 @@ class BookSeeder extends Seeder
             'title'=>'Testavimo pagrindas',
             'cover'=> '',
             'status'=>'approved',
-            'category_id'=>'2',
+
             'description'=>'test pagrindas',
             'user_id'=>'1',
             'price'=>'20',
@@ -46,7 +46,7 @@ class BookSeeder extends Seeder
             'title'=>'Testavimo pagrindas',
             'cover'=> '',
             'status'=>'approved',
-            'category_id'=>'2',
+
             'description'=>'test pagrindas',
             'user_id'=>'1',
             'price'=>'20',
@@ -59,7 +59,7 @@ class BookSeeder extends Seeder
             'title'=>'Testavimo pagrindas',
             'cover'=> '',
             'status'=>'unapproved',
-            'category_id'=>'2',
+
             'description'=>'test pagrindas',
             'user_id'=>'1',
             'price'=>'20',
@@ -72,7 +72,7 @@ class BookSeeder extends Seeder
             'title'=>'Testavimo pagrindas',
             'cover'=> '',
             'status'=>'unapproved',
-            'category_id'=>'2',
+
             'description'=>'test pagrindas',
             'user_id'=>'1',
             'price'=>'20',
@@ -85,7 +85,7 @@ class BookSeeder extends Seeder
             'title'=>'Testavimo pagrindas',
             'cover'=> '',
             'status'=>'unapproved',
-            'category_id'=>'2',
+
             'description'=>'test pagrindas',
             'user_id'=>'1',
             'price'=>'20',
@@ -98,7 +98,7 @@ class BookSeeder extends Seeder
             'title'=>'Testavimo pagrindas',
             'cover'=> '',
             'status'=>'unapproved',
-            'category_id'=>'2',
+
             'description'=>'test pagrindas',
             'user_id'=>'2',
             'price'=>'20',
@@ -111,7 +111,7 @@ class BookSeeder extends Seeder
             'title'=>'Testavimo pagrindas',
             'cover'=> '',
             'status'=>'unapproved',
-            'category_id'=>'2',
+
             'user_id'=>'1',
             'description'=>'test pagrindas',
             'price'=>'20',

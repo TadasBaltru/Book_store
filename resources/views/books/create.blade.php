@@ -20,7 +20,8 @@
 
             @csrf
 
-            <input type="text" name="user" value="{{Auth::user()->id}}" class="form-control" hidden/>
+
+
             Author:
             <br>
             <br>
@@ -68,12 +69,7 @@
             <br>
             <br>
             Categories:
-            <select name="category_id" class="form-control">
-                @foreach($categories as $category)
-                    <option value="{{$category->id}}">{{$category->category_name}}</option>
-                @endforeach
-
-            </select>
+            <input type="text" name="category">
             <br>
             <br>
 
