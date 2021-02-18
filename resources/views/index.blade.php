@@ -33,7 +33,14 @@
                                 <a href="{{route('show', $book->id)}}">{{$book->title}}</a>
                             </h4>
                             <h5>$ {{$book->price}}</h5>
-                            <p class="card-text">{{$book->author}}</p>
+                            <p class="card-text">Authors:
+                                @foreach($book->author as $writer)
+
+                                    <a>{{$writer->name}} </a>
+
+                                @endforeach
+
+                            </p>
 
 
 

@@ -7,6 +7,8 @@
 
 
         <h1 class="my-4">Edit Book</h1>
+        <H2 class="my-3 bg-danger">All authors and categories must be sepparated by commas </H2>
+
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -24,7 +26,9 @@
             Author:
             <br>
             <br>
-            <input type="text" name="author" value="{{$book->author}}" class="form-control"/>
+            <p class="form control"></p>
+            <br>
+            <input type="text" name="author" value="@foreach($book->author as $writer){{$writer->name .","}}@endforeach" class="form-control"/>
 
             <br>
             <br>
@@ -39,7 +43,7 @@
             <br>
             <br>
 
-            <textarea name="description" value="{{$book->description}}" id="" cols="30" rows="10" class="form-control"></textarea>
+            <textarea name="description" cols="30" rows="10" class="form-control">{{$book->description}} </textarea>
 
             <br>
             <br>
@@ -78,17 +82,14 @@
             <br>
             Categories:
 
-                <select name="category_id" class="form-control">
-                    @foreach($categories as $category)
-                        <option value="{{$category->id}}" @if ($category->id == $book->category_id) selected @endif>{{$category->category_name}}</option>
-                    @endforeach
-            </select>
+            <input type="text" name="category" value="@foreach($book->category as $categor){{$categor->category_name .","}}@endforeach" class="form-control"/>
+
             <br>
             <br>
             Cover:
             <br>
             <br>
-            <input type="file" name="cover" {{asset("storage/".$book->cover) }}>
+            <input type="file" name="cover" value="{{asset("storage/".$book->cover) }}">
 
 
 

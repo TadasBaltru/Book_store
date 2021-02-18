@@ -6,6 +6,7 @@ use App\Http\Requests\StoreBookRequest;
 use App\Models\Book;
 use App\Models\Category;
 use App\Models\Review;
+use App\Models\Author;
 use Illuminate\Http\Request;
 use Illuminate\Session\Store;
 use App\Models\User;
@@ -63,7 +64,6 @@ class BookController extends Controller
 
 
      $book=   Book::create([
-                'author'=>$request->author,
                 'title'=>$request->title,
                 'cover'=>$path,
                 'description'=>$request->description,
@@ -82,6 +82,16 @@ class BookController extends Controller
 
             $categoryCheck->books()->attach($book);
         }
+        $authors = explode(',', $request->author);
+        foreach($authors as $author)
+        {
+            $authorCheck = Author::where('name', $author)->firstOrCreate(['name' => $author]);
+
+            $authorCheck->books()->attach($book);
+        }
+
+
+
 
         return redirect()->route('books.index');
     }
@@ -131,18 +141,39 @@ class BookController extends Controller
         $path = $request->file('cover')->store('covers', 'public');
 
 
-
-        $book->update([
-            'author'=>$request->author,
+        $book->Update([
             'title'=>$request->title,
             'cover'=>$path,
+            'description'=>$request->description,
             'status'=>$request->status,
-            'category_id'=>$request->category_id,
+
+            'user_id'=>auth()->user()->id,
             'price'=>$request->price,
             'discount'=>$request->discount
 
-
         ]);
+
+
+
+        $categories = explode(',', $request->category);
+        $authors = explode(',', $request->author);
+
+        $book->author()->detach();
+        $book->category()->detach();
+
+        foreach($categories as $category)
+        {
+            $categoryCheck = Category::where('category_name', $category)->firstOrCreate(['category_name' => $category]);
+
+            $categoryCheck->books()->attach($book);
+        }
+
+        foreach($authors as $author)
+        {
+            $authorCheck = Author::where('name', $author)->firstOrCreate(['name' => $author]);
+
+            $authorCheck->books()->attach($book);
+        }
 
 
         return redirect()->route('books.index');
