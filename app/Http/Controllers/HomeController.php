@@ -18,11 +18,26 @@ class HomeController extends Controller
         $categories=Category::all();
         $authors=Author::all();
         $search = request()->query('search');
-        $books = Book::with('category', 'author')->where('status', 'approved');
-        if ($search) {
-            $books = $books->where('title', 'like', "%{$search}%")->orwhere('author', 'like', "%{$search}%");
-        }
-        $books = $books->paginate(20);
+
+
+
+        $books = Book::with('author')->where('status', 'approved')
+            ->when(
+                request('search'), function($query)
+            {
+                $search = request('search');
+
+                $query->where( function($query) use ($search)
+                {
+                    $query->where('title','LIKE','%'.$search.'%');
+                    $query->orWhereHas('author' ,function($query) use ($search)
+                    {
+                        $query->where('name', 'LIKE','%'.$search.'%');
+                    });
+                })->paginate(20);
+            })
+
+    ->paginate(20);
 
         return view('index', compact('categories', 'books', 'authors'));
 
