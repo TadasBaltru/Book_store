@@ -24,6 +24,10 @@ class Book extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function rating(){
+        return $this->belongsTo(Rating::class);
+    }
+
     public function isNew(){
 
         return $this->created > now()->subWeek();
@@ -31,7 +35,9 @@ class Book extends Model
     }
     public function avarageRating(){
 
-            return round( $this->reviews()->average('stars'), 1 );
+
+
+            return round( $this->rating()->average('rating'), 1 );
     }
 
     public function discountedPrice()

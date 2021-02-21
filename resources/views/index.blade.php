@@ -68,7 +68,17 @@
 
                         </div>
                         <div class="card-footer">
-                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+
+{{--                            {{dd($rating->where('book_id', '=',"$book->id")->average('rating'))}}--}}
+                            @if($rating->where('book_id', '=',"$book->id")->average('rating') >  0.00)
+                            <small class="text-muted">Average rating: {{$rating->where('book_id', '=',"$book->id")->average('rating')}}</small>
+
+                            @else
+                                <small class="text-muted">This book havent been rated</small>
+
+                                @endif
+
+
                         </div>
                     </div>
                 </div>

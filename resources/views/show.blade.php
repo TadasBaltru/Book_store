@@ -15,9 +15,7 @@
                     @endforeach</p>
                 <h4>$24.99</h4>
                 <p class="card-text">{{$book->description}}</p>
-                <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-                4.0 stars
-            </div>
+
         </div>
         <!-- /.card -->
 
@@ -26,7 +24,7 @@
                <div class="well">
 
                    <h4>Leave rating</h4>
-                   <form action="{{route('ratings.store')}}" method="post", role="form">
+                   <form action="{{route('ratings.store')}}" method="post" role="form">
 
                        @csrf
 
