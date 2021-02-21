@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RatingController;
 use App\Models\Book;
+use App\Mail\ReportMail;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,8 @@ use App\Models\Book;
 
 Route::get('/', [HomeController::class, 'index', Book::class, 'index'])->name('home');
 Route::get('/show/{book}', [BookController::class, 'show'])->name('show');
+Route::get('/books/report/{book}', [BookController::class, 'report'])->name('books.report');
+
 
 
 Auth::routes();
@@ -36,6 +39,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::resource('categories', CategoryController::class);
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
     Route::resource('profiles', ProfileController::class);
+
 
 
 

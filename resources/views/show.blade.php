@@ -23,6 +23,8 @@
             @auth
                <div class="well">
 
+                   <a href="{{route('books.report', $book)}}">Press here to report</a>
+
                    <h4>Leave rating</h4>
                    <form action="{{route('ratings.store')}}" method="post" role="form">
 
