@@ -29,7 +29,8 @@ class StoreBookRequest extends FormRequest
                 'title'=>'required',
                 'description'=>'required',
                 'category'=>'required',
-                'price'=>'required'
+                'price'=>'required',
+                'cover'=>'required'
 
 
         ];

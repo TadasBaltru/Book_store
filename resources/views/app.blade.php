@@ -43,7 +43,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('register')}}">register</a>
                     </li>
-                @endguest;
+                @endguest
                 @auth
                     @if (Auth::user()->role == 'admin')
 
@@ -67,7 +67,7 @@
                             <a class="nav-link" href="#" onclick="document.getElementById('logout-form').submit()">Log out</a>
                         </li>
                     </form>
-                @endauth;
+                @endauth
 
                 <li>  <form action="{{route('home')}}" method="GET">
                         <div class="input-group">

@@ -4,6 +4,8 @@
 
     <div class="col-lg-9">
 
+
+
         <div class="card mt-4">
             <img class="card-img-top img-fluid" src="{{asset("storage/".$book->cover)}}" alt="cover">
             <div class="card-body">
@@ -37,9 +39,8 @@
                        <br>
                        <select name="rating" id="">
 
-                           @if(isset($rating->user_id))
 
-                               <option value="{{$rating->rating}}">{{$rating->rating}}</option>
+
                                <option value="1">1</option>
                                <option value="2">2</option>
                                <option value="3">3</option>
@@ -47,17 +48,16 @@
                                <option value="5">5</option>
 
 
-                           @else
-                           <option value="1">1</option>
-                           <option value="2">2</option>
-                           <option value="3">3</option>
-                           <option value="4">4</option>
-                           <option value="5">5</option>
-                               @endif
+
                        </select>
                        <button type="submit" name="save" class="btn btn-primary">Submit</button>
 
                    </form>
+                   <p>Your rating was:
+                       @foreach($rating as $rate)
+                            {{$rate->rating}}
+                       @endforeach
+                   </p>
                </div>
 
 
@@ -70,7 +70,7 @@
 
                     <div class="form-group">
                         <label for="comment_content">Your review</label>
-                        <textarea class="form-control" name="content" class="form-control" rows="3"></textarea>
+                        <textarea class="form-control" name="content" class="form-control" required rows="3"></textarea>
                     </div>
 
                     <input type="text" hidden name="book_id" id="" value="{{$book->id}}">

@@ -28,12 +28,12 @@ class BookController extends Controller
     }
     public function index(User $user)
     {
-        $books = Book::all();
+        $books = Book::with('author', 'category')->get()->sortBy('status');
         $user = auth()->user();
 
         if(auth()->user()->role != 'admin')
         {
-            $books= Book::all()->where('user_id', '=', "$user->id");
+            $books= Book::with('author', 'category')->where('user_id', '=', "$user->id")->get()->sortBy('status');
         }
 
 
@@ -108,10 +108,11 @@ class BookController extends Controller
     public function show(Book $book)
     {
       //  dd($book);
-        if(isset(auth()->user->id)){
-
-            $rating = Rating::findorfail(auth()->user()->id);
-            $reviews = Review::all()->where('book_id', '=', "$book->id");
+        if(isset(auth()->user()->id)){
+            $user = auth()->user()->id;
+            $rating = Rating::all()->where('user_id', '=' ,"$user")->where('book_id', '=', "$book->id");
+       //     dd($rating);
+            $reviews = Review::all()->where('book_id', '=', ".$book->id.");
             $categories = Category::all();
             return view('show', compact('book', 'categories', 'reviews', 'rating'));
 
@@ -200,6 +201,11 @@ class BookController extends Controller
     public function destroy($id)
     {
         $book = Book::find($id);
+   //     dd($book->author()->count());
+//        if($book->author()->count() || $book->category()->count() || $book->author()->count() && $book->category()->count() )
+//        {
+//            return back()->withErrors(['error'=>'Cannot delete, book has author or category records']);
+//        }
         $book->delete();
         return redirect()->route('books.index');
 
