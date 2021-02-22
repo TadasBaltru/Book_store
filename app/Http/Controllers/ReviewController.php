@@ -39,6 +39,8 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(['content'=>'required']);
+
         $book= Book::find($request->book_id);
 
         Review::create([

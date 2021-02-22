@@ -2,21 +2,8 @@
 
 @section('content')
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+
     <div class="col-lg-12">
-
-
-
-        <h1 class="my-4">Edit Book</h1>
-        <H2 class="my-3 bg-danger">All authors and categories must be sepparated by commas </H2>
 
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -27,6 +14,11 @@
                 </ul>
             </div>
         @endif
+
+        <h1 class="my-4">Edit Book</h1>
+        <H2 class="my-3 bg-danger">All authors and categories must be sepparated by commas </H2>
+
+
         <form action="{{route('books.update', $book->id)}}" method="POST" enctype="multipart/form-data">
             @method('Put')
 

@@ -4,7 +4,15 @@
 
     <div class="col-lg-9">
 
-
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
         <div class="card mt-4">
             <img class="card-img-top img-fluid" src="{{asset("storage/".$book->cover)}}" alt="cover">
@@ -70,7 +78,7 @@
 
                     <div class="form-group">
                         <label for="comment_content">Your review</label>
-                        <textarea class="form-control" name="content" class="form-control" required rows="3"></textarea>
+                        <textarea class="form-control" name="content" class="form-control"  rows="3"></textarea>
                     </div>
 
                     <input type="text" hidden name="book_id" id="" value="{{$book->id}}">
