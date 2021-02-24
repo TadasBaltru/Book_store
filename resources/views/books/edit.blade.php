@@ -29,7 +29,8 @@
             <br>
             <p class="form control"></p>
             <br>
-            <input type="text" name="author" value="@foreach($book->author as $writer){{$writer->name .","}}@endforeach" class="form-control"/>
+            <input type="text" name="author" value="@foreach($book->author as $writer)@if(count($book->author) - 1 === $loop->index){{$writer->name}}
+            @else{{$writer->name .","}}@endif @endforeach" class="form-control"/> 
 
             <br>
             <br>
@@ -83,7 +84,8 @@
             <br>
             Categories:
 
-            <input type="text" name="category" value="@foreach($book->category as $categor){{$categor->category_name .","}}@endforeach" class="form-control"/>
+            <input type="text" name="category" value="@foreach($book->category as $categor)@if(count($book->category) - 1 === $loop->index){{$categor->category_name}}
+            @else{{$categor->category_name .","}}@endif @endforeach" class="form-control"/>
 
             <br>
             <br>
@@ -99,14 +101,14 @@
             Price:
             <br>
             <br>
-            <input type="text" name="price" value="{{$book->price}}" class="form-control"/>
+            <input type="number" name="price" value="{{$book->price}}" class="form-control"/>
 
             <br>
             <br>
             Discount:
             <br>
             <br>
-            <input type="text" name="discount" value="{{$book->discount}}" class="form-control"/>
+            <input type="number" name="discount" value="{{$book->discount}}" class="form-control"/>
 
             <br>
             <br>

@@ -12,7 +12,9 @@ use App\Models\Rating;
 use Illuminate\Http\Request;
 use Illuminate\Session\Store;
 use App\Models\User;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
+use Intervention\Image\Facades\Image;
 
 class BookController extends Controller
 {
@@ -151,20 +153,30 @@ class BookController extends Controller
     public function update(StoreBookRequest $request, $id)
     {
         $book = Book::find($id);
-        $path = $request->file('cover')->store('covers', 'public');
+    //    $path = $request->file('cover')->store('covers', 'public');
+        if($request->hasFile('cover'))
+        {
+            $file = $request->file('cover')->store('covers', 'public');
+            $resizedImage = Image::make( public_path('storage/' . $file))
+                ->fit(400,400)->save();
 
 
-        $book->Update([
-            'title'=>$request->title,
-            'cover'=>$path,
-            'description'=>$request->description,
-            'status'=>$request->status,
+        }else{
+            $filename = 'default.jpg';
+        }
+    $book->Update([
+        'title'=>$request->title,
+        'cover'=> $file,
+        'description'=>$request->description,
+        'status'=>$request->status,
 
-            'user_id'=>auth()->user()->id,
-            'price'=>$request->price,
-            'discount'=>$request->discount
+        'user_id'=>auth()->user()->id,
+        'price'=>$request->price,
+        'discount'=>$request->discount
 
-        ]);
+    ]);
+
+
 
 
 
@@ -186,6 +198,7 @@ class BookController extends Controller
             $authorCheck = Author::where('name', $author)->firstOrCreate(['name' => $author]);
 
             $authorCheck->books()->attach($book);
+
         }
 
 

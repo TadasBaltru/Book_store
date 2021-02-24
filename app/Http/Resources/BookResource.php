@@ -27,7 +27,7 @@ class BookResource extends JsonResource
                      'authors'=> $this->author->implode('name', ', '),
 
 
-                    'cover'=>  'localhost:8000'.'storage'.$this->cover,
+                    'cover'=>  'localhost:8000/'.'storage/'.$this->cover,
                     'description'=>$this->description,
                     'price'=>$this->price
                 ];

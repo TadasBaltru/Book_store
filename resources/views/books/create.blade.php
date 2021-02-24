@@ -69,7 +69,7 @@
             <br>
             <br>
             Categories:
-            <input type="text" name="category">
+            <input type="text" name="category" class="form-control">
             <br>
             <br>
 
@@ -79,14 +79,14 @@
             Price:
             <br>
             <br>
-            <input type="text" name="price" value="" class="form-control"/>
+            <input type="number" name="price" value="" class="form-control"/>
 
             <br>
             <br>
             Discount:
             <br>
             <br>
-            <input type="text" name="discount" value="0" class="form-control"/>
+            <input type="number" name="discount" value="0" class="form-control"/>
 
             <br>
             <br>
