@@ -65,7 +65,7 @@ class BookController extends Controller
     public function store(StoreBookRequest $request)
     {
 
-        $book = Book::find($id);
+
         //    $path = $request->file('cover')->store('covers', 'public');
         if($request->hasFile('cover'))
         {
@@ -167,13 +167,17 @@ class BookController extends Controller
     //    $path = $request->file('cover')->store('covers', 'public');
         if($request->hasFile('cover'))
         {
+            if(File::exists( public_path('storage/'.$book->cover)) )
+            {
+                File::delete(public_path('storage/'.$book->cover));
+            }
             $file = $request->file('cover')->store('covers', 'public');
             $resizedImage = Image::make( public_path('storage/' . $file))
                 ->fit(400,400)->save();
 
 
         }else{
-            $file = 'covers/defaultImage.jpg';
+            $file = $book->id;
         }
     $book->Update([
         'title'=>$request->title,
@@ -230,8 +234,19 @@ class BookController extends Controller
 //        {
 //            return back()->withErrors(['error'=>'Cannot delete, book has author or category records']);
 //        }
+        $book->author()->detach();
+        $book->category()->detach();
+
+        if($book->cover != 'storage/covers/default.png'){
+            if(File::exists( public_path('storage/'.$book->cover)) )
+            {
+                File::delete(public_path('storage/' .$book->cover));
+            }
+        }
+
+
         $book->delete();
-        return redirect()->route('books.index');
+        return redirect()->route('books.index')->with('message', 'Success');
 
     }
     public function report(Request $request, Book $book)

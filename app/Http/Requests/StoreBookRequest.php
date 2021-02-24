@@ -30,7 +30,7 @@ class StoreBookRequest extends FormRequest
                 'description'=>'required',
                 'category'=>'required',
                 'price'=>'required',
-                'cover'=>'required|mimes:jpg,jpeg,png,bmp,gif,svg,webp',
+                'cover'=>'mimes:jpg,jpeg,png,bmp,gif,svg,webp',
                 'discount'=>'nullable'
 
 
