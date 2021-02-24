@@ -21,11 +21,13 @@ class BookResource extends JsonResource
                 return [
                     'id'=>$this->id,
                     'title'=>$this->title,
-                    'authors' => AuthorResource::collection($this->whenLoaded('author')),
-                    'categories' => CategoryResource::collection($this->whenLoaded('category')),
+              //      'authors' => AuthorResource::collection($this->whenLoaded('author')),
+             //       'categories' => CategoryResource::collection($this->whenLoaded('category')),
+                    'categories' => $this->category->implode('category_name', ', '),
+                     'authors'=> $this->author->implode('name', ', '),
 
 
-                    'cover'=>$this->cover,
+                    'cover'=>  'localhost:8000'.'storage'.$this->cover,
                     'description'=>$this->description,
                     'price'=>$this->price
                 ];
