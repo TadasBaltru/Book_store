@@ -25,12 +25,13 @@ class StoreBookRequest extends FormRequest
     {
         return [
 
-                'author'=>'required',
-                'title'=>'required',
+                'author'=>'required|max:255',
+                'title'=>'required|max:255',
                 'description'=>'required',
                 'category'=>'required',
                 'price'=>'required',
-                'cover'=>'required'
+                'cover'=>'required|mimes:jpg,jpeg,png,bmp,gif,svg,webp',
+                'discount'=>'nullable'
 
 
         ];
