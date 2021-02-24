@@ -65,12 +65,23 @@ class BookController extends Controller
     public function store(StoreBookRequest $request)
     {
 
-        $path = $request->file('cover')->store('covers', 'public');
+        $book = Book::find($id);
+        //    $path = $request->file('cover')->store('covers', 'public');
+        if($request->hasFile('cover'))
+        {
+            $file = $request->file('cover')->store('covers', 'public');
+            $resizedImage = Image::make( public_path('storage/' . $file))
+                ->fit(400,400)->save();
+
+
+        }else{
+            $file = 'covers/defaultImage.jpg';
+        }
 
 
      $book=   Book::create([
                 'title'=>$request->title,
-                'cover'=>$path,
+                'cover'=>$file,
                 'description'=>$request->description,
                 'status'=>$request->status,
 
@@ -162,7 +173,7 @@ class BookController extends Controller
 
 
         }else{
-            $filename = 'default.jpg';
+            $file = 'covers/defaultImage.jpg';
         }
     $book->Update([
         'title'=>$request->title,

@@ -30,7 +30,7 @@
             <p class="form control"></p>
             <br>
             <input type="text" name="author" value="@foreach($book->author as $writer)@if(count($book->author) - 1 === $loop->index){{$writer->name}}
-            @else{{$writer->name .","}}@endif @endforeach" class="form-control"/> 
+            @else{{$writer->name .","}}@endif @endforeach" class="form-control"/>
 
             <br>
             <br>
