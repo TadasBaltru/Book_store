@@ -3,8 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models;
-use App\User;
+use Illuminate\Support\Facades\DB;
+
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,6 +20,9 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(CategorySeeder::class);
         $this->call(BookSeeder::class);
+        $this->call(AuthorSeeder::class);
+        $this->call(Author_bookSeeder::class);
+        $this->call(Book_categorySeeder::class);
 
 
 

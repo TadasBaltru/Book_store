@@ -16,9 +16,9 @@ class BookSeeder extends Seeder
     {
         DB::table('books')->insert([
 
-            'author'=>'Tadas Baltrusaitis',
+
             'title'=>'Testavimo pagrindas',
-            'cover'=> '',
+            'cover'=> 'covers/defaultImage.png',
             'status'=>'approved',
 
             'description'=>'test pagrindas',
@@ -29,9 +29,9 @@ class BookSeeder extends Seeder
         ]);
         DB::table('books')->insert([
 
-            'author'=>'Tadas Baltrusaitis',
+
             'title'=>'Testavimo pagrindas',
-            'cover'=> '',
+            'cover'=> 'covers/defaultImage.png',
             'status'=>'approved',
 
             'description'=>'test pagrindas',
@@ -42,9 +42,9 @@ class BookSeeder extends Seeder
         ]);
         DB::table('books')->insert([
 
-            'author'=>'Tadas Baltrusaitis',
+
             'title'=>'Testavimo pagrindas',
-            'cover'=> '',
+            'cover'=> 'covers/defaultImage.png',
             'status'=>'approved',
 
             'description'=>'test pagrindas',
@@ -55,9 +55,9 @@ class BookSeeder extends Seeder
         ]);
         DB::table('books')->insert([
 
-            'author'=>'Tadas Baltrusaitis',
+
             'title'=>'Testavimo pagrindas',
-            'cover'=> '',
+            'cover'=> 'covers/defaultImage.png',
             'status'=>'unapproved',
 
             'description'=>'test pagrindas',
@@ -68,9 +68,9 @@ class BookSeeder extends Seeder
         ]);
         DB::table('books')->insert([
 
-            'author'=>'Tadas Baltrusaitis',
+
             'title'=>'Testavimo pagrindas',
-            'cover'=> '',
+            'cover'=> 'covers/defaultImage.png',
             'status'=>'unapproved',
 
             'description'=>'test pagrindas',
@@ -81,9 +81,9 @@ class BookSeeder extends Seeder
         ]);
         DB::table('books')->insert([
 
-            'author'=>'Tadas Baltrusaitis',
+
             'title'=>'Testavimo pagrindas',
-            'cover'=> '',
+            'cover'=> 'covers/defaultImage.png',
             'status'=>'unapproved',
 
             'description'=>'test pagrindas',
@@ -94,9 +94,9 @@ class BookSeeder extends Seeder
         ]);
         DB::table('books')->insert([
 
-            'author'=>'Tadas Baltrusaitis',
+
             'title'=>'Testavimo pagrindas',
-            'cover'=> '',
+            'cover'=> 'covers/defaultImage.png',
             'status'=>'unapproved',
 
             'description'=>'test pagrindas',
@@ -107,9 +107,9 @@ class BookSeeder extends Seeder
         ]);
         DB::table('books')->insert([
 
-            'author'=>'Tadas Baltrusaitis',
+
             'title'=>'Testavimo pagrindas',
-            'cover'=> '',
+            'cover'=> 'covers/defaultImage.png',
             'status'=>'unapproved',
 
             'user_id'=>'1',
