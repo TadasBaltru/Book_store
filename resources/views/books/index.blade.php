@@ -1,7 +1,11 @@
 @extends('app')
 
 @section('content')
-
+    @if(Session::has('message'))
+        <div class="alert alert-success">
+            {{Session::get('message')}}
+        </div>
+    @endif
     <div class="col-lg-12" style="text-align: center!important;">
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -12,6 +16,7 @@
                 </ul>
             </div>
         @endif
+
 
         <h1 class="my-4">Books</h1>
         <a href="{{route('books.create')}}" class="btn btn-info">New Book</a>

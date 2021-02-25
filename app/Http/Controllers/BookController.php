@@ -75,7 +75,7 @@ class BookController extends Controller
 
 
         }else{
-            $file = 'covers/defaultImage.jpg';
+            $file = 'covers/defaultImage.png';
         }
 
 
@@ -109,7 +109,7 @@ class BookController extends Controller
 
 
 
-        return redirect()->route('books.index');
+        return redirect()->route('books.index')->with('message', 'Book has been created successfully');
     }
 
     /**
@@ -125,7 +125,7 @@ class BookController extends Controller
             $user = auth()->user()->id;
             $rating = Rating::all()->where('user_id', '=' ,"$user")->where('book_id', '=', "$book->id");
        //     dd($rating);
-            $reviews = Review::all()->where('book_id', '=', ".$book->id.");
+            $reviews = Review::all()->where('book_id', '=', "$book->id");
             $categories = Category::all();
             return view('show', compact('book', 'categories', 'reviews', 'rating'));
 
@@ -169,6 +169,7 @@ class BookController extends Controller
         {
             if(File::exists( public_path('storage/'.$book->cover)) )
             {
+                dd(File::delete(public_path('storage/'.$book->cover)));
                 File::delete(public_path('storage/'.$book->cover));
             }
             $file = $request->file('cover')->store('covers', 'public');
@@ -177,7 +178,7 @@ class BookController extends Controller
 
 
         }else{
-            $file = $book->id;
+            $file = $book->cover;
         }
     $book->Update([
         'title'=>$request->title,
@@ -217,7 +218,7 @@ class BookController extends Controller
         }
 
 
-        return redirect()->route('books.index');
+        return redirect()->route('books.index')->with('message', 'Book has been edited successfully');
     }
 
     /**
@@ -237,7 +238,7 @@ class BookController extends Controller
         $book->author()->detach();
         $book->category()->detach();
 
-        if($book->cover != 'storage/covers/default.png'){
+        if($book->cover != 'storage/covers/defaultImage.png'){
             if(File::exists( public_path('storage/'.$book->cover)) )
             {
                 File::delete(public_path('storage/' .$book->cover));
@@ -246,7 +247,7 @@ class BookController extends Controller
 
 
         $book->delete();
-        return redirect()->route('books.index')->with('message', 'Success');
+        return redirect()->route('books.index')->with('message', 'Book has been deleted successfully');
 
     }
     public function report(Request $request, Book $book)
@@ -267,7 +268,7 @@ class BookController extends Controller
 
 
         return redirect()->route('show', compact('book'))
-            ->with('status', 'Book reported!');
+            ->with('success', 'Book reported!');
 
     }
 
