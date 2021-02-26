@@ -120,23 +120,12 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-      //  dd($book);
-        if(isset(auth()->user()->id)){
-            $user = auth()->user()->id;
-            $rating = Rating::all()->where('user_id', '=' ,"$user")->where('book_id', '=', "$book->id");
-       //     dd($rating);
-            $reviews = Review::all()->where('book_id', '=', "$book->id");
+
             $categories = Category::all();
-            return view('show', compact('book', 'categories', 'reviews', 'rating'));
+
+            return view('show', compact('book', 'categories'));
 
 
-
-        }
-        else{
-            $reviews = Review::all()->where('book_id', '=', "$book->id");
-            $categories = Category::all();
-            return view('show', compact('book', 'categories', 'reviews'));
-        }
 
     }
 

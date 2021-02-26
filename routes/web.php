@@ -34,8 +34,6 @@ Auth::routes();
 Route::group(['middleware'=>'auth'],function(){
     Route::resource('books', BookController::class);
     Route::resource('users', UsersController::class);
-    Route::resource('reviews', ReviewController::class);
-    Route::resource('ratings', RatingController::class);
     Route::resource('categories', CategoryController::class);
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
     Route::resource('profiles', ProfileController::class);
