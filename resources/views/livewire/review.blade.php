@@ -1,5 +1,7 @@
 <div>
+@auth
     <div           class="well" style ="margin-top:80px; margin-bottom: 80px" >
+
         <h4>Leave review:</h4>
         <form wire:submit.prevent="submitComment"  role="form">
             @csrf
@@ -10,7 +12,7 @@
             <button type="submit" name="Submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
-
+    @endauth
     <div class="card card-outline-secondary my-4">
         <div class="card-header">
             Product Reviews
@@ -23,4 +25,5 @@
             @endforeach
         </div>
     </div>
+
 </div>

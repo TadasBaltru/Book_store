@@ -29,15 +29,22 @@
         </div>
         <!-- /.card -->
 
+            @guest
+                <p>Press <a href="{{route('login')}}">here</a> to login if you want to rate or comment</p>
+
+            @endguest
+
+
 
             @auth
                 <a href="{{route('books.report', $book)}}">Press here to report</a>
                 @livewire('ratings', ['bookId'=> $book->id])
+
+
               @endauth
+            @livewire('reviews', ['bookId'=> $book->id])
 
 
-
-         @livewire('reviews', ['bookId'=> $book->id])
 
 
     </div>
