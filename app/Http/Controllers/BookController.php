@@ -6,9 +6,7 @@ use App\Http\Requests\StoreBookRequest;
 use App\Mail\ReportMail;
 use App\Models\Book;
 use App\Models\Category;
-use App\Models\Review;
 use App\Models\Author;
-use App\Models\Rating;
 use Illuminate\Http\Request;
 use Illuminate\Session\Store;
 use App\Models\User;
@@ -28,17 +26,18 @@ class BookController extends Controller
         $this->middleware('auth', ['except' => array('index', 'show') ]);
 
     }
-    public function index(User $user)
+    public function index()
     {
-        $books = Book::with('author', 'category')->get()->sortBy('status');
+
+
+        $books = Book::with('author', 'category')->orderBy('created', 'desc')->paginate(25);
         $user = auth()->user();
+
 
         if($user->role != 'admin')
         {
-            $books= Book::with('author', 'category')->where('user_id', '=', "$user->id")->get()->sortBy('status');
+            $books= Book::with('author', 'category')->where('user_id', '=', "$user->id")->orderBy('created', 'desc')->paginate(25);
         }
-
-
 
 
         return view('books.index', compact('books', 'user'));
@@ -120,6 +119,8 @@ class BookController extends Controller
     {
 
             $categories = Category::all();
+
+
 
             return view('show', compact('book', 'categories'));
 
