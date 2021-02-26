@@ -17,7 +17,6 @@ class Reviews extends Component
 
 
 
-
     public function mount($bookId)
     {
         $this->reviews =  Review::where('book_id', '=', "$bookId")->get();
@@ -36,8 +35,8 @@ class Reviews extends Component
 
     public function submitComment(){
 
-        $this->validate(['content'=>'required']);
 
+        $this->validate(['content'=>'required']);
 
          Review::create([
 

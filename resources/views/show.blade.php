@@ -4,15 +4,7 @@
 
     <div class="col-lg-9">
 
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+
 
         <div class="card mt-4">
             <img class="card-img-top img-fluid" src="{{asset("storage/".$book->cover)}}" alt="cover">

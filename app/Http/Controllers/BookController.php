@@ -33,7 +33,7 @@ class BookController extends Controller
         $books = Book::with('author', 'category')->get()->sortBy('status');
         $user = auth()->user();
 
-        if(auth()->user()->role != 'admin')
+        if($user->role != 'admin')
         {
             $books= Book::with('author', 'category')->where('user_id', '=', "$user->id")->get()->sortBy('status');
         }
@@ -64,8 +64,6 @@ class BookController extends Controller
      */
     public function store(StoreBookRequest $request)
     {
-
-
         //    $path = $request->file('cover')->store('covers', 'public');
         if($request->hasFile('cover'))
         {
@@ -137,7 +135,17 @@ class BookController extends Controller
      */
     public function edit($id)
     {
+
         $book = Book::find($id);
+
+        if(auth()->user()->role !=='admin' ){
+
+            if(auth()->user()->id !== $book->user_id){
+                return redirect()->back();
+            }
+        }
+
+
         $categories = Category::all();
 
         return view('books.edit', compact('book', 'categories'));
@@ -241,9 +249,6 @@ class BookController extends Controller
     }
     public function report(Request $request, Book $book)
     {
-
-
-
 
         $details = [
             'title' => $book->title,

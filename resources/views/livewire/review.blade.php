@@ -1,11 +1,21 @@
 <div>
 @auth
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
     <div           class="well" style ="margin-top:80px; margin-bottom: 80px" >
 
         <h4>Leave review:</h4>
         <form wire:submit.prevent="submitComment"  role="form">
             @csrf
             <div class="form-group">
+                @error('content') <span class="error">{{ $message }}</span> @enderror
                 <label for="comment_content">Your review</label>
                 <textarea class="form-control" wire:model="content" class="form-control"  rows="3"></textarea>
             </div>

@@ -34,7 +34,7 @@ Auth::routes();
 Route::group(['middleware'=>'auth'],function(){
     Route::resource('books', BookController::class);
     Route::resource('users', UsersController::class);
-    Route::resource('categories', CategoryController::class);
+    Route::resource('categories', CategoryController::class)->middleware('admin');
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
     Route::resource('profiles', ProfileController::class);
 
