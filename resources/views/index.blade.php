@@ -11,17 +11,20 @@
 
 
 
-        <div class="col-lg-12">
 
 
 
-            <div class="row" style ="margin: 100px 0px 100px 0px;">
+
+            <div class="row row-cols-lg-5 row-cols-md-3" style ="margin: 100px 0px 100px 0px;">
 
 
 
                 @foreach($books as $book)
 
-                <div class="col-lg-3 col-md-6 mb-4">
+
+
+
+                <div class="col mb-4">
                     <div class="card h-100">
 
                         <a href="#"><img class="card-img-top"   src="{{ asset("storage/".$book->cover) }}" alt="cover">  </a>
@@ -81,14 +84,13 @@
 
 
 
-            </div>
+
             <!-- /.row -->
 
 
 
 
-    </div>
-    </div>
+
 
     <div class="d-flex justify-content-center">
         {!! $books->links() !!}

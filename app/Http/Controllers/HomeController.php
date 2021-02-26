@@ -36,10 +36,10 @@ class HomeController extends Controller
                     {
                         $query->where('name', 'LIKE','%'.$search.'%');
                     });
-                })->paginate(20);
+                })->paginate(25);
             })
 
-    ->paginate(20);
+    ->paginate(25);
 
         return view('index', compact('categories', 'books', 'authors', 'rating'));
 
