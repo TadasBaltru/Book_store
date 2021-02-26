@@ -43,6 +43,21 @@ class Book extends Model
             ->where('user_id', auth()->id());
     }
 
+    public function bookAuthors(){
 
+    //    $plucked = $this->author->pluck('name');
+    //    $plucked->all();
+        $skips = ["[","]","\""];
+
+        return  str_replace($skips, '', $this->author()->pluck('name'));
+
+    }
+    public function bookCategories(){
+
+        $skips = ["[","]","\""];
+
+        return  str_replace($skips, '', $this->category()->pluck('category_name'));
+
+    }
 
 }

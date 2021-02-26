@@ -24,13 +24,12 @@
 
             @csrf
 
-            Author:
+            Authors:
             <br>
             <br>
             <p class="form control"></p>
             <br>
-            <input type="text" name="author" value="@foreach($book->author as $writer)@if(count($book->author) - 1 === $loop->index){{$writer->name}}
-            @else{{$writer->name .","}}@endif @endforeach" class="form-control"/>
+            <input type="text" name="author" value="{{$book->bookAuthors()}}" class="form-control"/>
 
             <br>
             <br>
@@ -84,7 +83,7 @@
             <br>
             Categories:
 
-            <input type="text" name="category" value="@foreach($book->category as $categor)@if(count($book->category)-1===$loop->index){{$categor->category_name}}@else{{$categor->category_name.","}}@endif @endforeach" class="form-control"/>
+            <input type="text" name="category" value="{{$book->bookCategories()}}" class="form-control"/>
 
             <br>
             <br>

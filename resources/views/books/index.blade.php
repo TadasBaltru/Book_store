@@ -47,11 +47,8 @@
                  <th>{{$loop->index+1}}</th>
                  <th>{{$book->created}}</th>
                  <th>
-                     @foreach($book->author as $writer)
+                    {{$book->bookAuthors()}}
 
-                     {{$writer->name}}
-
-                     @endforeach
                  </th>
                  <th>{{$book->title}}</th>
                  <th>{{$book->status}}</th>
@@ -59,11 +56,7 @@
 {{--                      src="{{ asset("storage/".$book->cover) }}" alt="cover">  </a>--}}
 
                  <th>
-                     @foreach($book->category as $categor)
-
-
-                     {{$categor->category_name}}
-                     @endforeach
+                     {{$book->bookCategories()}}
                  </th>
                  <th>{{$book->price}}</th>
                  <th>{{$book->discount}}</th>

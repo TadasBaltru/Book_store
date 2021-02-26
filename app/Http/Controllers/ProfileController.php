@@ -77,7 +77,7 @@ class ProfileController extends Controller
 
         $user = User::find($request->id);
 
-
+        dd($request->password === Crypt::decrypt($user->password));
 
 
         $user->update([

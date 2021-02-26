@@ -49,33 +49,14 @@
                             @endif
 
                             <p class="card-text"><strong>Authors:</strong>
-                                @foreach($book->author as $writer)
-
-                                    @if(count($book->author)-1 === $loop->index)
-                                        <span>{{$writer->name}}</span>
-                                    @else
-                                        <span>{{$writer->name}}, </span>
-                                    @endif
-
-
-                                @endforeach
-
+                                    {{$book->bookAuthors()}}
                             </p>
 
 
 
                             <p class="card-text"> <strong>Categories:</strong>
-                            @foreach($book->category as $categor)
-
-                                @if(count($book->category) - 1 === $loop->index)
-                                    <span>{{$categor->category_name}}</span>
-                                @else
-                                    <span>{{$categor->category_name}}, </span>
-                               @endif
-
-
-                            @endforeach
-                        </p>
+                                {{$book->bookCategories()}}
+                           </p>
 
                         </div>
                         <div class="card-footer">
