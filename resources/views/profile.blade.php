@@ -62,7 +62,7 @@
 
                 </form>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 mb-4">
 
                 <form action="{{route('changePassword', $user->id)}}" method="POST" enctype="multipart/form-data">
                     @method('Put')
