@@ -10,15 +10,19 @@ class Ratings extends Component
     public $rating;
     public $rate;
     public $bookId;
+    public $average;
     public function mount($bookId)
     {
-        $this->rating =  Rating::where('book_id', '=', "$bookId")->get();
+        $this->rating =  Rating::where('book_id', '=', "$bookId")->where('user_id', '=', auth()->user()->id)->get();
+
     }
 
     public function render()
     {
         $rating = $this->mount($this->bookId);
-        return view('livewire.rating', compact('rating'));
+        $average= $this->average = Rating::where('book_id', '=',"$this->bookId")->average('rating');
+
+        return view('livewire.rating', compact('rating', 'average'));
     }
 
     public function submitRating(){
@@ -42,7 +46,8 @@ class Ratings extends Component
 
 
 
-        $this->rating =  Rating::where('book_id', '=', "$this->bookId")->get();
+        $this->rating =  Rating::where('book_id', '=', "$this->bookId")->where('user_id', '=', auth()->user()->id)->get();
+        $this->average = Rating::where('book_id', '=',"$this->bookId")->average('rating');
 
 
 

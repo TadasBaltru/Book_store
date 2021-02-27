@@ -33,4 +33,12 @@
             {{$rate->rating}}
         @endforeach
     </p>
+    @if($average >  0.00)
+        <small>Average rating: {{number_format($average, 2 )}}</small>
+
+    @else
+        <small>This book havent been rated</small>
+
+    @endif
+
 </div>

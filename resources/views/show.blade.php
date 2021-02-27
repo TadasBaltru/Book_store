@@ -10,11 +10,7 @@
             <img class="card-img-top img-fluid" src="{{asset("storage/".$book->cover)}}" alt="cover">
             <div class="card-body">
                 <h3 class="card-title">{{$book->title}}</h3>
-                <p class="card-text"> @foreach($book->author as $writer)
-
-                        {{$writer->name ." "}}
-
-                    @endforeach</p>
+                <p class="card-text">{{$book->bookAuthors()}}</p>
                 <h4>$24.99</h4>
                 <p class="card-text">{{$book->description}}</p>
 
