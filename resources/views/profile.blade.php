@@ -31,14 +31,13 @@
                     @csrf
 
 
-                    <input  type="text" name="name" value="{{$user->name}} " class="form-control"hidden/>
-                    <input  type="text" name="id" value="{{$user->id}} " class="form-control"hidden/>
+
 
 
                     Email:
                     <br>
                     <br>
-                    <input type="email" name="email" value="{{$user->email}} " class="form-control"/>
+                    <input type="text" name="email" value="{{$user->email}} " class="form-control"/>
 
                     <br>
                     <br>

@@ -87,11 +87,7 @@ class ProfileController extends Controller
             if($request->newPassword === $request->repeatPassword)
             {
                 $user->update([
-              //      'name'=>$request->name,
-                //    'email'=>$request->email,
                     'password'=>Hash::make($request->newPassword),
-                    //'role'=> $request->role
-
 
                 ]);
                 return redirect()->route('profile', compact('user'))->with('message', 'Your password has been changed successfully');
@@ -111,7 +107,12 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
 
-        $user = User::findorfail($request->id);
+        $user = auth()->user()->id;
+        $validated = $request->validate([
+            'password'=>'required',
+            'email'=>'required|email'
+
+        ]);
 
 
         if((Hash::check($request->password, auth()->user()->password))){
