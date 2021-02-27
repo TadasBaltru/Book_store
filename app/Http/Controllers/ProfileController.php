@@ -72,24 +72,76 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function ChangePassword(Request $request){
+        $user = User::find($request->id);
+
+        $validated = $request->validate([
+            'oldPassword'=>'required',
+            'newPassword'=>'required|min:8',
+            'repeatPassword'=>'required|min:8'
+        ]);
+
+        if((Hash::check($request->oldPassword, auth()->user()->password)))
+        {
+            if($request->newPassword === $request->repeatPassword)
+            {
+                $user->update([
+              //      'name'=>$request->name,
+                //    'email'=>$request->email,
+                    'password'=>Hash::make($request->newPassword),
+                    //'role'=> $request->role
+
+
+                ]);
+                return redirect()->route('profile', compact('user'))->with('message', 'Your password has been changed successfully');
+            }
+            else{
+                return redirect()->route('profile', compact('user'))->with('error', 'Passwords do not match');
+            }
+
+        }
+        else{
+            return redirect()->route('profile', compact('user'))->with('error', 'Wrong current password');
+
+        }
+
+    }
+
     public function update(Request $request)
     {
 
-        $user = User::find($request->id);
-
-        dd($request->password === Crypt::decrypt($user->password));
+        $user = User::findorfail($request->id);
 
 
-        $user->update([
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'password'=>Hash::make($request->password),
-            'role'=> $request->role
+        if((Hash::check($request->password, auth()->user()->password))){
+            if(User::where("email", $request->email)->exists())
+            {
+                return redirect()->route('profile', compact('user'))->with('error', 'This email already exists');
+            }
+            else {
 
 
-        ]);
+                $user->update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->password),
+                    'role' => $request->role
 
-        return redirect()->route('profile', compact('user'));
+
+                ]);
+                return redirect()->route('profile', compact('user'))->with('message', 'Your email has been changed successfully');
+            }
+
+        }
+        else{
+            return redirect()->route('profile', compact('user'))->with('error', 'Wrong password');
+
+        }
+
+
+
+
     }
 
     /**

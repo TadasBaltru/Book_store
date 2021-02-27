@@ -84,6 +84,9 @@
 
 
 
+    <div class="container d-flex justify-content-center">
+        {!! $books->links() !!}
+    </div>
 
             <!-- /.row -->
 
@@ -92,7 +95,4 @@
 
 
 
-    <div class="d-flex justify-content-center">
-        {!! $books->links() !!}
-    </div>
 @endsection

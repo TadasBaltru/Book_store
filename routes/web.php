@@ -36,7 +36,11 @@ Route::group(['middleware'=>'auth'],function(){
     Route::resource('users', UsersController::class);
     Route::resource('categories', CategoryController::class)->middleware('admin');
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
+    Route::put('/profile/{user}/ChangePassword', [ProfileController::class, 'ChangePassword'])->name('changePassword');
     Route::resource('profiles', ProfileController::class);
+
+
+
 
 
 

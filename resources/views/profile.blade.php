@@ -17,6 +17,11 @@
             </div>
         @endif
 
+        @if(Session::has('error'))
+            <div class="alert alert-danger">
+                {{Session::get('error')}}
+            </div>
+        @endif
 
         <div class="row">
             <div class="col-lg-6">
@@ -59,14 +64,28 @@
                 </form>
             </div>
             <div class="col-lg-6">
-            <form action="{{route('profiles.update', $user->id)}}" method="POST" enctype="multipart/form-data">
 
-                    Old Password:
+                <form action="{{route('changePassword', $user->id)}}" method="POST" enctype="multipart/form-data">
+                    @method('Put')
+
+                    @csrf
+
+
+                    <input  type="text" name="name" value="{{$user->name}} " class="form-control"hidden/>
+                    <input  type="text" name="id" value="{{$user->id}} " class="form-control"hidden/>
+
+
+
+
+                  Current Password:
 
                     <br>
                     <br>
 
                     <input type="password" name="oldPassword" class="form-control">
+
+
+
                     <br>
                     <br>
                     New Password:
@@ -75,25 +94,30 @@
                     <br>
 
                     <input type="password" name="newPassword" class="form-control">
+
+
+
                     <br>
                     <br>
-                    Repeat New password:
+                    Repeat new Password:
 
                     <br>
                     <br>
 
-                    <input type="password" name="repeatPassword" class="form-control" >
+                    <input type="password" name="repeatPassword" class="form-control">
+
+
+
                     <br>
                     <br>
+
+                    <input type="text" name="role" class="form-control" value="{{$user->role}} "hidden>
+
 
 
                     <input type="submit" value="Change password" class="btn btn-primary"/>
-                    <br><br>
 
-
-
-
-            </form>
+                </form>
             </div>
         </div>
 
