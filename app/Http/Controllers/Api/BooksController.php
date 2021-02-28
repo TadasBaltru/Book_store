@@ -16,7 +16,7 @@ class BooksController extends Controller
      */
     public function index()
     {
-        $books = Book::with('author', 'category')->where('status', '=', 'approved')->paginate(20);
+        $books = Book::with('author', 'category')->where('status', '=', 'approved')->paginate(25);
         return BookResource::collection($books);
     }
 

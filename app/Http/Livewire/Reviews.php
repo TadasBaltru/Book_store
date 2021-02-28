@@ -19,7 +19,7 @@ class Reviews extends Component
 
     public function mount($bookId)
     {
-        $this->reviews =  Review::where('book_id', '=', "$bookId")->get();
+        $this->reviews =  Review::where('book_id', '=', "$bookId")->orderBy('created_at', 'desc')->get();
     }
 
 
@@ -44,7 +44,7 @@ class Reviews extends Component
             'book_id'=> $this->bookId,
             'user_id'=> auth()->user()->id
         ]);
-        $this->reviews =  Review::where('book_id', '=', "$this->bookId")->get();
+        $this->reviews =  Review::where('book_id', '=', "$this->bookId")->orderBy('created_at', 'desc')->get();
 
 
 

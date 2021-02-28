@@ -16,7 +16,7 @@ class BookResource extends JsonResource
     {
 
 
-  //    dd($this->author());
+
 
                 return [
                     'id'=>$this->id,
@@ -27,8 +27,8 @@ class BookResource extends JsonResource
                      'authors'=> $this->author->implode('name', ', '),
 
 
-                    'cover'=>  'localhost:8000/'.'storage/'.$this->cover,
-                    'description'=>$this->description,
+                    'cover'=>  route('books.show', $this).'/'.$this->cover,
+                    'description'=>$this->when($request->book, $this->description),
                     'price'=>$this->price
                 ];
 
