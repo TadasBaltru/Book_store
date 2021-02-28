@@ -28,8 +28,11 @@ class Ratings extends Component
     public function submitRating(){
 
 
+        $this->validate(['rate'=>'required']);
+
+
         $ratingg = Rating::where('user_id', auth()->user()->id)->where('book_id', "$this->bookId")->first();
-      //  dd($ratingg);
+
         if($ratingg !== null)
         {
           $ratingg->update(['rating'=> $this->rate]);
