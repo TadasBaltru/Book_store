@@ -250,20 +250,26 @@ class BookController extends Controller
     }
     public function report(Request $request, Book $book)
     {
-
+        $categories = Category::all();
         $details = [
             'title' => $book->title,
             'user_name' => auth()->user()->name,
             'user_email' => auth()->user()->email,
-            'complaint' => $request->input('complaint')
+            'complain' => $request->input('complain')
 
         ];
 
-        Mail::to('tadasbaltru@gmail.com')->send(new ReportMail($details));
+        $users = User::all()->where('role', 'admin');
+        foreach($users as $user)
+        {
+            Mail::to($user->email)->send(new ReportMail($details));
+        }
 
 
-        return redirect()->route('show', compact('book'))
-            ->with('success', 'Book reported!');
+
+
+        return redirect()->route('show', compact('book', 'categories'))
+            ->with('message', 'Book reported!');
 
     }
 

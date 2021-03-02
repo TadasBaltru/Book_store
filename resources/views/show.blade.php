@@ -2,7 +2,29 @@
 
 @section('content')
 
-    <div class="col-lg-9">
+
+    <div class="container">
+
+        @if(Session::has('message'))
+
+            <div class="alert alert-success">
+                {{Session::get('message')}}
+            </div>
+        @endif
+        @if ($errors->any())
+            <div class="col-lg-12">
+
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+
+        @endif
+
 
 
 
@@ -25,7 +47,45 @@
 
 
             @auth
-                <a href="{{route('books.report', $book)}}">Press here to report</a>
+                <button style="width:10%" type="button" class="btn btn-primary" data-toggle="modal" data-target="#reportModal">
+                    Report this book
+                </button>
+
+                <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Report book form</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                <div class="modal-body">
+
+                    <form action="{{route('report', $book)}}">
+
+                        <div class="form-group">
+
+                            <label for="complain">Type here your complain</label>
+                            <textarea name="complain" cols="15" rows="10" class="form-control"></textarea>
+                        </div>
+
+
+
+                        <br>
+                        <br>
+
+
+                        <button type="submit" name="Submit" class="btn btn-primary">Report</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </form>
+
+                </div>
+                </div>
+                    </div>
+                </div>
+
+
                 @livewire('ratings', ['bookId'=> $book->id])
 
 
@@ -34,7 +94,8 @@
 
 
 
+        </div>
 
-    </div>
+
     <!-- /.col-lg-9 -->
 @endsection

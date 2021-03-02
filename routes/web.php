@@ -24,7 +24,7 @@ use App\Mail\ReportMail;
 
 Route::get('/', [HomeController::class, 'index', Book::class, 'index'])->name('home');
 Route::get('/show/{book}', [BookController::class, 'show'])->name('show');
-Route::get('/books/report/{book}', [BookController::class, 'report'])->name('books.report');
+Route::get('/books/report/{book}', [BookController::class, 'report'])->name('report');
 
 
 
@@ -32,11 +32,13 @@ Auth::routes();
 
 
 Route::group(['middleware'=>'auth'],function(){
+    Route::put('/profile/{user}/ChangePassword', [ProfileController::class, 'ChangePassword'])->name('changePassword');
+
     Route::resource('books', BookController::class);
     Route::resource('users', UsersController::class);
     Route::resource('categories', CategoryController::class)->middleware('admin');
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
-    Route::put('/profile/{user}/ChangePassword', [ProfileController::class, 'ChangePassword'])->name('changePassword');
+
     Route::resource('profiles', ProfileController::class);
 
 

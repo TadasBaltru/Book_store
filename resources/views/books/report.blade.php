@@ -7,7 +7,7 @@
 <h1>{{ $details['title'] }}</h1>
 
 <h5>Submitted by: {{ $details['user_name'] }} . Email: {{ $details['user_email'] }}</h5>
-<p>Complaint: {{ $details['complaint'] }}</p>
+<p>Complain: {{ $details['complain'] }}</p>
 
 
 <p>Thanks</p>
