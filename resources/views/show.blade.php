@@ -86,7 +86,7 @@
                 </div>
 
 
-                @livewire('ratings', ['bookId'=> $book->id])
+
 
 
               @endauth

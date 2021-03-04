@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\Category;
-use App\Models\Rating;
+use App\Models\Review;
 use Illuminate\Http\Request;
 
 
@@ -19,7 +19,7 @@ class HomeController extends Controller
         $categories=Category::all();
         $authors=Author::all();
         $search = request()->query('search');
-        $rating = Rating::all();
+        $review = Review::all();
 
 
 
@@ -41,7 +41,7 @@ class HomeController extends Controller
 
     ->paginate(25);
 
-        return view('index', compact('categories', 'books', 'authors', 'rating'));
+        return view('index', compact('categories', 'books', 'authors', 'review'));
 
     }
 

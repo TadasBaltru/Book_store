@@ -3,9 +3,9 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-//use App\Models\User;
+
 use App\Models\Review;
-use App\Models\Book;
+
 
 class Reviews extends Component
 {
@@ -13,38 +13,37 @@ class Reviews extends Component
     public $content;
     public $reviews;
     public $bookId;
+    public $rate;
+    public $average;
 
-
-
-
-    public function mount($bookId)
-    {
-        $this->reviews =  Review::where('book_id', '=', "$bookId")->orderBy('created_at', 'desc')->get();
-    }
 
 
     public function render()
     {
 
-            $reviews = $this->mount($this->bookId);
+            $reviews =  $this->reviews =  Review::with('user', 'book')->where('book_id', '=', "$this->bookId")->orderBy('created_at', 'desc')->get();
+            $average= $this->average = Review::with('user', 'book')->where('book_id', '=',"$this->bookId")->average('rating');
 
 
-        return view('livewire.review', compact('reviews'));
+        return view('livewire.review', compact('reviews', 'average'));
 
     }
 
     public function submitComment(){
 
 
-        $this->validate(['content'=>'required']);
+        $this->validate(['content'=>'required', 'rate'=>'required']);
 
          Review::create([
 
             'content'=> $this->content,
             'book_id'=> $this->bookId,
+            'rating'=> $this->rate,
             'user_id'=> auth()->user()->id
         ]);
-        $this->reviews =  Review::where('book_id', '=', "$this->bookId")->orderBy('created_at', 'desc')->get();
+        $this->render();
+
+        $this->reset(['content', 'rate']);
 
 
 

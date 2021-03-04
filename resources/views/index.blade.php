@@ -65,13 +65,13 @@
                         <div class="card-footer">
 
 {{--                            {{dd($rating->where('book_id', '=',"$book->id")->average('rating'))}}--}}
-                            @if($rating->where('book_id', '=',"$book->id")->average('rating') >  0.00)
-                            <small class="text-muted">Average rating: {{number_format($rating->where('book_id', '=',"$book->id")->average('rating'), 2)}}</small>
+{{--                            @if($review->where('book_id', '=',"$book->id")->average('rating') >  0.00)--}}
+{{--                            <small class="text-muted">Average rating: {{number_format($revire->where('book_id', '=',"$book->id")->average('rating'), 2)}}</small>--}}
 
-                            @else
-                                <small class="text-muted">This book havent been rated</small>
+{{--                            @else--}}
+{{--                                <small class="text-muted">This book havent been rated</small>--}}
 
-                                @endif
+{{--                                @endif--}}
 
 
                         </div>
